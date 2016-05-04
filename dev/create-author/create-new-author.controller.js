@@ -15,7 +15,7 @@
         this.newAuthorForm = function newAuthorForm() {
           // console.log(this.newAuthor);
 
-          NewAuthorService.createAuthor(this.newAuthor)
+          return NewAuthorService.createAuthor(this.newAuthor)
             .then(function login(data) {
               console.log('Promise data', data);
               console.log("that", that.newAuthor);
