@@ -11,19 +11,21 @@
         console.log('In Author Stories');
         var that = this;
         this.newAuthor = {};
+        this.errorMessage = "";
 
         this.newAuthorForm = function newAuthorForm() {
           // console.log(this.newAuthor);
 
           return NewAuthorService.createAuthor(this.newAuthor)
-            .then(function login(data) {
-              console.log('Promise data', data);
-              console.log("that", that.newAuthor);
-              LoginService.authenticate(that.newAuthor);
-            })
+            .then(LoginService.authenticate(this.newAuthor))
             .then( function goHome() {
               $state.go('home');
-            });
+            })
+            .catch( function errorHandler(response) {
+             if (response.status > 399) {
+               that.errorMessage = "Oops, you've encountered an error, please try logging in .";
+             }
+           });
 
 
           };
