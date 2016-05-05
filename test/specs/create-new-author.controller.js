@@ -1,9 +1,10 @@
 (function() {
   'use strict';
-
+var assert = chai.assert;
 
   suite('create new author controller', function() {
     var $rootScope;
+    var createNewAuthorController;
     var mockNewAuthorService = {};
     var mockLoginService = {};
 
@@ -45,14 +46,19 @@
       };
     }));
     test('newAuthorForm errors correctly', function (doneCallback) {
+      // what the user might type into the form
       createNewAuthorController.newAuthor = {
         name: 'foobar'
       };
-      doneCallback();
+      // now they click submit... and it fires...
+      createNewAuthorController.newAuthorForm()
+        .then(function(){
+          console.log('in test then, do we have a messge?');
+          assert.ok(createNewAuthorController.errorMessage, "Error message exists on failure");
+          doneCallback();
+        });
+        $rootScope.$digest();
     });
-    $rootScope.$digest();
   });
-
-});
 
 })();
