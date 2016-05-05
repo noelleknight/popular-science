@@ -11,7 +11,7 @@
     function LoginService($http ) {
 
     	var loginData = null;
-      
+
 
     	return {
     		authenticate: authenticate,      //this returns authenticate function

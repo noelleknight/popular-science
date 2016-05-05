@@ -19,12 +19,11 @@ module.exports = function(grunt) {
             'node_modules/angular/angular.js',
             'node_modules/angular-ui-router/release/angular-ui-router.js',
             'node_modules/angular-mocks/angular-mocks.js',
-            // 'dev/app/**/*.js',
             'dev/**/*.js',
             'test/specs/**/*.js'
           ],
           preprocessors: {
-            'dev/create-author/create-new-author.service.js': ['coverage']
+            'dev/create-author/*.js': ['coverage']
           },
           reporters: ['progress', 'coverage'],
           coverageReporter: {
